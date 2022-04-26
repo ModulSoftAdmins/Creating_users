@@ -8,7 +8,7 @@ About program
 
   Creating users:
   
-  ![1](https://user-images.githubusercontent.com/99117012/165301185-c0d1c2de-f59d-4903-b001-986a7767dd59.png)
+  ![6](https://user-images.githubusercontent.com/99117012/165338224-6a932d92-fec5-415c-bb2c-1ad4e2a44b79.png)
   
   Users - The name of user
   
