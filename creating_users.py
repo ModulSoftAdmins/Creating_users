@@ -49,7 +49,6 @@ for n in range(2,rows_2 + 2):
     #Generating password
     for k in range(1, chars_password):
             password += random.choice(CHARS)
-    print(password)
     for m in range(1, cols_2 + 1):
         if(m == 1):
             user_name = sheet_users.cell(row = n,column = m).value
