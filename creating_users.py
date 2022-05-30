@@ -7,8 +7,9 @@ import subprocess
 output = subprocess.check_output(['powershell.exe' ,"[CultureInfo]::InstalleduICulture.Name"], universal_newlines=True)
 key = output.split()
 
-CHARS = 'abcdefghijklnop1234567qrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcde'
+CHARS = 'abcdfjklnop1234567qruvwxyBCDHIKLMNOPQRSTUVWXYZ12344234567890abcde'
 password = ""
+password_1 = "123123qQ"
 wb = openpyxl.load_workbook('exel.xlsx')
 wb1 = openpyxl.Workbook()
 if (os.path.exists("Passwaord.xlsx")):
@@ -27,11 +28,17 @@ print("Enter number of groups:")
 rows_1 = int(input())
 cols_1 = sheet_group.max_column
 
-print("Enter length of password")
-chars_password = int(input())
+print("Set default password \"123123qQ\" on users? /Y or /N")
+choice_1 = input()
+if(choice_1 == "/Y" or choice == "/y"):
+    pass
+else:
+    print("Enter length of password")
+    chars_password = int(input())
 
 print("Add users to \"Remote Desktop Users\" group? /Y or /N")
 choice = input()
+
 
 #Creating groups
 for i in range(2, rows_1 + 2):
@@ -53,12 +60,18 @@ for n in range(2,rows_2 + 2):
         if(m == 1):
             user_name = sheet_users.cell(row = n,column = m).value
             sheet_password.cell(row = n - 1, column = m).value = f"{user_name}"
-            os.system(f"net user \"{user_name}\" {password} /ADD /yes")
+            if(choice_1 == "/Y" or choice == "/y"):
+                os.system(f"net user \"{user_name}\" {password_1} /ADD /yes")
+            else:
+                os.system(f"net user \"{user_name}\" {password} /ADD /yes")
             os.system(f"wmic UserAccount where Name=\"{user_name}\" set PasswordExpires=False")
         elif(m == 2):
             full_name = sheet_users.cell(row = n,column = m).value
             #Saving password in file
-            sheet_password.cell(row = n - 1, column = m).value = f"{password}"
+            if(choice_1 == "/Y" or choice == "/y"):
+                sheet_password.cell(row = n - 1, column = m).value = f"{password_1}"
+            else:
+                sheet_password.cell(row = n - 1, column = m).value = f"{password}"
             os.system(f"net user \"{user_name}\" /fullname:\"{full_name}\"")
         elif(m == 3):
             description = sheet_users.cell(row = n,column = m).value
