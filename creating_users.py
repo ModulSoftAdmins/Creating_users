@@ -30,7 +30,7 @@ cols_1 = sheet_group.max_column
 
 print("Set default password \"123123qQ\" on users? /Y or /N")
 choice_1 = input()
-if(choice_1 == "/Y" or choice == "/y"):
+if(choice_1 == "/Y" or choice_1 == "/y"):
     pass
 else:
     print("Enter length of password")
@@ -54,8 +54,12 @@ for i in range(2, rows_1 + 2):
 #Creating users and addind groups
 for n in range(2,rows_2 + 2):
     #Generating password
-    for k in range(1, chars_password):
+    if(choice_1 == "/Y" or choice_1 == "/y"):
+        pass
+    else:
+        for k in range(1, len(chars_password)):
             password += random.choice(CHARS)
+
     for m in range(1, cols_2 + 1):
         if(m == 1):
             user_name = sheet_users.cell(row = n,column = m).value
